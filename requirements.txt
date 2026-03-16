@@ -1,0 +1,14 @@
+# Core dependencies
+numpy>=1.21
+scipy>=1.7
+matplotlib>=3.4
+
+# MPI for Python (parallel execution)
+mpi4py>=3.0
+
+# ILP solver (used by the upper-bound algorithm)
+ortools>=9.0
+
+# Optional – reinforcement learning baseline (commented out by default)
+# stable-baselines3>=1.5
+# torch>=1.11
