@@ -1,8 +1,14 @@
-# Coverage-Aware Task Allocation in Crowdsourcing (WFIV)
+# An Efficient Task Allocation in Mobile Crowdsensing Environments
 
+> **This repository is the official implementation of the research article:**
+>
+> **"An Efficient Task Allocation in Mobile Crowdsensing Environments"**
+> Published in: *IEEE Transactions on Network and Service Management ( Volume: 22, Issue: 3, June 2025)*
+> DOI: [10.1109/TNSM.2025.3540293](https://doi.org/10.1109/TNSM.2025.3540293)
+> 
 This repository contains the implementation and experiments for **coverage-aware task allocation** in spatial crowdsourcing environments.
 The core contribution is the **WFIV** algorithm, which is benchmarked against several baseline methods under different reward schemes and population sizes.
-
+---
 ---
 
 ## Problem Statement
