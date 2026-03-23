@@ -182,11 +182,15 @@ coverage_0,budget_0,time_0 coverage_1,budget_1,time_1 ... coverage_K,budget_K,ti
 If you use this code in your research, please cite:
 
 ```bibtex
-@article{abdeddine2024wfiv,
-  title   = {Coverage-Aware Task Allocation in Spatial Crowdsourcing},
-  author  = {Abdeddine, Abderrafi and others},
-  journal = {<journal>},
-  year    = {2024}
+@article{abdeddine2025wfiv,
+  title   = {An Efficient Task Allocation in Mobile Crowdsensing Environments},
+  author  = {Abdeddine, Abderrafi and Iraqi, Youssef and Mekouar, Loubna},
+  journal = {IEEE Transactions on Network and Service Management},
+  volume  = {22},
+  number  = {3},
+  pages   = {2323--2342},
+  year    = {2025},
+  doi     = {10.1109/TNSM.2025.3540293}
 }
 ```
 
