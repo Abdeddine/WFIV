@@ -27,12 +27,12 @@ Three reward schemes are supported: *proportional*, *normalised proportional*, a
 
 | Name | Label in code | Description |
 |---|---|---|
-| **WFIV** | `AlgoWFIV` | Proposed algorithm – Worker-First Iterative Voting |
-| **GRPS** | `AlgoPS` | Greedy Round-Robin Proportional Scheme |
-| **RRTS** | `AlgoRR` | Round-Robin Task Selection |
+| **WFIV** | `AlgoWFIV` | Proposed algorithm – Water-Filling with Importance Value |
+| **GRPS** | `AlgoPS` | Proposed algorithm – GReedy Pair Selection |
+| **RRTS** | `AlgoRR` | Proposed algorithm – Round-robin allocation with Random Task Selection |
 | **Greedy** | `Greedy` | Greedy coverage maximisation |
-| **CSTAg / CSTAp** | `stableTaskAssignment` | Coalition Stable Task Assignment (general / proportional) |
-| **Upper-bound** | `OrToolSolver_reduction` | ILP upper bound via OR-Tools |
+| **CSTAg / CSTAp** | `stableTaskAssignment` | Coverage-aware Stable Task Assignment (general / proportional) |
+| **Upper-bound** | `OrToolSolver_problem_reduction` | ILP upper bound of problem relaxation via OR-Tools |
 
 ---
 
