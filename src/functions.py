@@ -183,13 +183,10 @@ def AddPoint(PoI,k):
 def generatePoIandCwrokers(k,path,folder):
 
     workers = read_Data_Set(path)
-    #PoI,Cworkers = GeneratePoI4(workers)
-    # if k == 200:
-    PoI = GeneratePoI4(workers,300)
-    PoI = AddPoint(PoI,100)
-    # else:
-    #     PoI = GeneratePoI4(workers,3000)
-    #     PoI = AddPoint(PoI,1000)
+    points_on_path = k * 0.75
+    points_added = k - points_on_path
+    PoI = GeneratePoI(points_on_path)
+    PoI = AddPoint(PoI,points_added)
     Cworkers = ComputeCworkers(PoI,workers)
 
     textfile1 = open(folder+"PoI.txt", "w")
@@ -1130,7 +1127,7 @@ def ComputeCworkers(PoI,workers1):
     # print("number of point = ", totalDistinctCount)
     return Cworkers
 
-def GeneratePoI4(workers1,number_of_PoIs):
+def GeneratePoI(workers1,number_of_PoIs):
     #global L, indexw, Mw, Mt, xt, nt, zt, Ht, At, cWorkerTask
     # Cworkers = [[].copy() for i in range(len(workers1))]
     numberOfPoint = [0 for i in range(len(workers1))]
@@ -1215,7 +1212,7 @@ def GeneratePoI4(workers1,number_of_PoIs):
 def workerPattern(workers1, PoI1,folderPath,HPC):
     #global L, indexw, Mw, Mt, xt, nt, zt, Ht, At, cWorkerTask
     # workers1 = read_Data_Set(path)
-    # PoI1, Cworkers = GeneratePoI4(workers1)
+    # PoI1, Cworkers = GeneratePoI(workers1)
     PoI = changePoIOrganisation1(PoI1)
     workers = changeWorkersOrganisation(workers1)
     for element in workers:
@@ -1233,7 +1230,7 @@ def workerPattern(workers1, PoI1,folderPath,HPC):
 def workerPattern1(workers1, PoI1, folderPath):
     #global L, indexw, Mw, Mt, xt, nt, zt, Ht, At, cWorkerTask
     # workers1 = read_Data_Set(path)
-    # PoI1, Cworkers = GeneratePoI4(workers1)
+    # PoI1, Cworkers = GeneratePoI(workers1)
     PoI = changePoIOrganisation1(PoI1)
     workers = changeWorkersOrganisation(workers1)
     for element in workers:
