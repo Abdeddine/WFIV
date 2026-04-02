@@ -1,4 +1,5 @@
 # An Efficient Task Allocation in Mobile Crowdsensing Environments
+[![DOI](https://zenodo.org/badge/1199399059.svg)](https://doi.org/10.5281/zenodo.19388165)
 
 > **This repository is the official implementation of the research article:**
 >
