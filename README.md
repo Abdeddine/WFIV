@@ -48,7 +48,7 @@ WFIV/
 │   ├── algorithms.py        # All task allocation algorithms
 │   └── functions.py         # Utility and helper functions
 ├── data/
-│   ├── data_generation.py   # Placeholder – fill in to regenerate data from raw traces
+│   ├── data_generation.py   # Downloads & processes the CRAWDAD ncsu/mobilitymodels dataset
 │   ├── Random/              # Synthetic worker trajectory files (worker 0.txt … worker N.txt)
 │   └── Generation/
 │       ├── PoI.txt          # One PoI per line:  <x>  <y>
@@ -92,20 +92,71 @@ The `data/` folder already contains a synthetic dataset generated from random wo
 | `data/Generation/PoI.txt` | 400 Points of Interest. Each line: `<x>  <y>`. |
 | `data/Generation/Cworkers.txt` | Coverage map. Line *i* lists the PoIs that worker *i* can cover, as `<x>,<y>` pairs. |
 
-### Generating data from raw traces (e.g. KAIST)
+### Regenerating data from the CRAWDAD ncsu/mobilitymodels dataset
 
-The raw KAIST GPS traces are **not** included in this repository.
-Once you have the data, fill in `data/data_generation.py` and run:
+The experiments can also be run on real GPS traces from the
+[CRAWDAD ncsu/mobilitymodels](https://ieee-dataport.org/open-access/crawdad-ncsumobilitymodels)
+dataset (Rhee et al., 2009), which contains human mobility traces from five
+locations: NCSU campus, KAIST campus, New York City, Disney World (Orlando),
+and the NC State Fair.
+
+**Trace file format** — three whitespace-separated columns in scientific notation,
+one row per 30-second sample:
+
+```
+<time_s>   <x_meters>   <y_meters>
+```
+
+**Download steps** (the dataset is open-access, CC BY 4.0, but requires a free account):
+
+1. Create a free account at [https://ieee-dataport.org](https://ieee-dataport.org) and log in
+2. Go to the [dataset page](https://ieee-dataport.org/open-access/crawdad-ncsumobilitymodels)
+3. Download `Traces_TimeXY_30sec_txt.tar.gz` (≈ 4 MB)
+4. Place the archive in the `data/` folder
+
+**Generate the worker trajectories, PoI.txt, and Cworkers.txt:**
 
 ```bash
-python data/data_generation.py \
-    --input /path/to/KAIST/raw \
-    --output data/ \
-    --num_poi 400 \
-    --coverage_radius 150
+# Default: NCSU campus traces, 400 PoIs
+python data/data_generation.py
+
+# Other location subsets
+python data/data_generation.py --location KAIST    --num_poi 400
+python data/data_generation.py --location NewYork  --num_poi 400
+python data/data_generation.py --location all      --num_poi 400
 ```
 
 This overwrites `data/Random/` and `data/Generation/` with the newly generated files.
+
+---
+
+## Setting up the parallel computing environment
+
+The parallel mode of `main.py` uses MPI via `mpi4py`.  Before running with
+`mpirun`, the MPI and Python modules must be loaded.
+
+**On the Toubkal HPC cluster**, check what is available and load the recommended
+module (which bundles OpenMPI and Python in one step):
+
+```bash
+module avail mpi4py
+module load mpi4py/4.0.1-gompi-2024a
+```
+
+> Substitute the version with whichever is listed on your cluster.
+> This automatically loads `OpenMPI/5.0.3-GCC-13.3.0` and `Python/3.12.3`.
+
+**If you use SLURM as your workload manager**, reserve cores before calling
+`mpirun` — otherwise it will refuse to start more processes than the number of
+physical cores on the login node:
+
+```bash
+# Interactive session (replace N with the number of MPI ranks you need)
+srun --ntasks=N --cpus-per-task=1 --pty bash
+
+# Or submit as a batch job
+sbatch run.sh
+```
 
 ---
 
